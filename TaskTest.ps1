@@ -1,4 +1,7 @@
-﻿New-Item -ItemType Directory -Path "C:\Temp"
+﻿If (!(Test-Path "C:\Temp"))
+{
+    New-Item -ItemType Directory -Path "C:\Temp"
+}
 
 $FilePath = "C:\Temp\Output.txt"
 

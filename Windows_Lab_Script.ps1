@@ -146,13 +146,10 @@ Get-ChildItem -Path .\ -Include "PowerShell" -Recurse
 New-Item .\SOFTWARE\App1
 
 # 5.3.B - Create a new registry property
-New-Item .\SOFTWARE\App1 -Name InstallPath -Value "C:\Program Files\App1"
+New-ItemProperty .\SOFTWARE\App1 -Name InstallPath -Value "C:\Program Files\App1"
 
-# 5.3.B - Create a new registry property
-New-Item .\SOFTWARE\App1 -Name InstallPath -Value "C:\Program Files\App1"
-
-# 5.3.B - Create a new registry property with null value
-New-Item .\SOFTWARE\App1 -Name NewInstallPath -Value ""
+# 5.3.C - Create a new registry property with null value
+New-ItemProperty .\SOFTWARE\App1 -Name NewInstallPath -Value ""
 
 
 
@@ -166,7 +163,7 @@ Rename-Item -Path .\SOFTWARE\App1 -NewName App2
 Rename-ItemProperty -Path .\SOFTWARE\App2 -Name InstallPath -NewName OldInstallPath
 
 # 5.4.C - Change registry value
-Set-ItemProperty -Path App2 -Name OldInstallPath -Value "C:\Temp" 
+Set-ItemProperty -Path .\SOFTWARE\App2 -Name OldInstallPath -Value "C:\Temp" 
 
 
 
