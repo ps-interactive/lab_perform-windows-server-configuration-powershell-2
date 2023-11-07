@@ -22,10 +22,10 @@ New-Item -ItemType Directory -Path C:\Temp\SharedFolder1
 
 
 
-# 3.3 Share a folder and set permssions
+# 3.3 Share a folder and verify
 
 # 3.3.A - Create a new SMB share on existing folder
-New-SmbShare -Path C:\Temp\SharedFolder1 -Name "Shared Folder 1"    #(Folder needs to be present. Command won't create the folder)
+New-SmbShare -Path C:\Temp\SharedFolder1 -Name "Shared Folder 1"
 
 # 3.3.B - Retrieve SMB share
 Get-SmbShare
@@ -47,7 +47,7 @@ Grant-SmbShareAccess -Name "Shared Folder 1" -AccountName "ps-win-1\$NewUser1" -
 # 3.5 Revoke SMB share permissions
 
 # 3.5.A - Revoke SMB share permissions for test user
-Revoke-SmbShareAccess -Name "Shared Folder 1" -AccountName "ps-win-1\$NewUser1" -Force
+Revoke-SmbShareAccess -Name "Shared Folder 1" -AccountName "Everyone" -Force
 
 
 ######################################################################################
@@ -128,10 +128,10 @@ Get-childItem HKLM:\
 # 5.2.D - Retrieve registry key using absolute path
 Get-Item HKLM:\SOFTWARE\Microsoft\PowerShell\1\PowerShellEngine\
 
-# 5.2.E - Retrieve registry value using name paramter
+# 5.2.E - Retrieve registry value using name parameter
 Get-ItemProperty HKLM:\SOFTWARE\Microsoft\PowerShell\1\PowerShellEngine -Name ApplicationBase
 
-# 5.2.F - Retrieve all registry values using from a registry key
+# 5.2.F - Retrieve all registry values from a registry key
 Get-ItemProperty HKLM:\SOFTWARE\Microsoft\PowerShell\1\PowerShellEngine
 
 # 5.2.G - Do a wildcard search with registry key name
@@ -193,7 +193,7 @@ Get-Item -Path .\SOFTWARE\App2
 # 6.1 - Explore Cert PSDrive and retrieve certificates
 
 # 6.1.A - List Certificate PS drive and enter the drive
-Get-PSDrive -Name Cert
+Get-PSDrive
 Set-location Cert:\
 
 # 6.1.B - List Machine's and User's Cert store path
