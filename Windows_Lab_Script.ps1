@@ -259,15 +259,15 @@ Register-ScheduledTask -TaskName $TaskName -Action $Action -Trigger $Trigger
 #7.2.A - Execute a task
 Start-ScheduledTask -TaskName "Task 1"
 
-
-
-
 # 7.3 - Create task scheduler with advanced settings
 
 #7.3.A - Register an advanced scheduled task
+
 $TaskName = "Task 2"
 $username ="ps-win-1\user2"
 $password ="P@ssw0rd"
+$encrypted = ConvertTo-SecureString -String "$password" -AsPlainText -Force
+New-LocalUser "user2" -Password $encrypted -FullName "user2" -Description "user2"
 
 $Action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-nologo -file C:\Users\Public\Desktop\LAB_FILES\TaskTest.ps1"
 $Trigger = New-ScheduledTaskTrigger -Weekly -WeeksInterval 1 -DaysOfWeek Friday -At 11pm
@@ -288,4 +288,3 @@ Set-ScheduledTask -TaskName "Task 2" -User "pslearner"
 
 # 7.4.B - Execute the task
 Start-ScheduledTask -TaskName "Task 2"
-
